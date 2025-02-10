@@ -13,8 +13,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
     private bool isGrounded = false;
     private bool jump = false;
+    private float fireRate = 0.3f;
+    private float nextFire = 0;
 
     //public
+    public GameObject fire;
+    public Transform firePoint;
     public float speed = 3;
     public float jumpForce = 250;
     public float maxSpeed = 7f;
@@ -82,6 +86,16 @@ public class PlayerController : MonoBehaviour
             jump = true; 
         //Debug.Log("Jumping!!!");
         //transform.Translate(Vector2.up * jumpForce * Time.deltaTime);
+    }
+
+    public void OnFire(InputValue movementValue)
+    {
+        if (Time.time >= nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            animator.SetTrigger("isShooting");
+            Instantiate(fire, firePoint.position, firePoint.rotation);
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

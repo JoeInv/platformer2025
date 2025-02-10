@@ -27,7 +27,7 @@ public class DragonController : MonoBehaviour
         RaycastHit2D headHit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.CompareTag("player"))
+            if (hit.collider.gameObject.CompareTag("Player"))
             {
                 Destroy(gameObject);
             }
