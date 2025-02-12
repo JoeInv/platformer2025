@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ground
   - boundary
+  - fire
+  - enemy
   layers:
   - Default
   - TransparentFX

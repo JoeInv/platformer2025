@@ -17,7 +17,7 @@ public class DragonController : MonoBehaviour
     void FixedUpdate()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 3f);
-        Debug.DrawRay(transform.position, new Vector2(0, -3), Color.red, 0.5f);
+        //Debug.DrawRay(transform.position, new Vector2(0, -3), Color.red, 0.5f);
         if (hit.collider == null)
         {
             direction = direction * -1;
@@ -34,4 +34,11 @@ public class DragonController : MonoBehaviour
 
         }
      }
+
+    private void OnTriggerEnter2D(Collider2D collision){
+        if(collision.gameObject.CompareTag("fire"))
+            Destroy (gameObject);
+            
+
+    }
 }

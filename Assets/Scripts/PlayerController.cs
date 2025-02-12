@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool jump = false;
     private float fireRate = 0.3f;
     private float nextFire = 0;
+    private bool facingRight = false;
+    private AudioSource audioSource;
 
     //public
     public GameObject fire;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();                 // for animation
         sprite_r = GetComponent<SpriteRenderer>();           // for sprite flip
         body = GetComponent<Rigidbody2D>();                  // to apply force to player
@@ -68,10 +71,14 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         // to make sure player is facing direction they are heading
-        if (movementVector.x < 0) // if we are walking to the left
-            sprite_r.flipX = true;
-        else if (movementVector.x > 0) //if we are walking to the right
-            sprite_r.flipX = false;
+        if (movementVector.x < 0 && facingRight){ // if we are walking to the left
+            Flip();
+            facingRight = false;
+        }
+        else if (movementVector.x > 0 && !facingRight){ //if we are walking to the right
+            Flip();
+            facingRight = true;
+    }
     }
 
     public void OnMove(InputValue movementValue)
@@ -94,7 +101,8 @@ public class PlayerController : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
             animator.SetTrigger("isShooting");
-            Instantiate(fire, firePoint.position, firePoint.rotation);
+            Instantiate(fire, firePoint.position, facingRight ? firePoint.rotation : Quaternion.Euler(0, 180, 0));
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 
@@ -127,4 +135,20 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
+
+    public Vector2 GetDirection()
+    {
+        if (facingRight)
+            return Vector2.right;
+        else
+            return Vector2.left;
+    }
+
+    public void Flip()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x = theScale.x * -1;
+        transform.localScale = theScale;
+    }
+
 }
