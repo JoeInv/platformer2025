@@ -8,6 +8,10 @@ TagManager:
   - boundary
   - fire
   - enemy
+  - Pillar
+  - Zone
+  - Platform
+  - door
   layers:
   - Default
   - TransparentFX

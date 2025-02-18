@@ -16,6 +16,6 @@ public class LivesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        livesTxt.SetText("Lives: " + GameManager.instance.GetLives());  
     }
 }

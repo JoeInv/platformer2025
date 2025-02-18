@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool jump = false;
     private float fireRate = 0.3f;
     private float nextFire = 0;
-    private bool facingRight = false;
+    private bool facingRight = true;
     private AudioSource audioSource;
 
     //public
@@ -108,10 +108,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = true;
             Debug.Log("Touching ground");
+        }
+
+
+        if (collision.gameObject.CompareTag("door"))
+        {
+            
+        }
+
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            GameManager.instance.DecreaseLives();
         }
     }
 

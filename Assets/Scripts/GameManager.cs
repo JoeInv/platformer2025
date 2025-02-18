@@ -28,4 +28,9 @@ public class GameManager : MonoBehaviour
     {
         return lives;
     }
+
+    public void Win()
+    {
+        
+    }
 }
