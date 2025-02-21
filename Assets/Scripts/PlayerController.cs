@@ -117,12 +117,24 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("door"))
         {
-            
+            GameManager.instance.Win();
+            GameManager.instance.WinLose();
         }
 
         if (collision.gameObject.CompareTag("enemy"))
         {
-            GameManager.instance.DecreaseLives();
+            if (GameManager.instance.GetLives() > 0)
+            {
+                GameManager.instance.DecreaseLives();
+                if (GameManager.instance.GetLives() <= 0)
+                {
+                    GameManager.instance.WinLose();
+                }
+            }
+            else if (GameManager.instance.GetLives() <= 0)
+            {
+                GameManager.instance.WinLose();
+            }
         }
     }
 
@@ -142,8 +154,20 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("boundary"))
         {
-            GameManager.instance.DecreaseLives();
-            SceneManager.LoadScene(0);
+            if (GameManager.instance.GetLives() > 0)
+            {
+                GameManager.instance.DecreaseLives();
+                if (GameManager.instance.GetLives() <= 0)
+                    {
+                    GameManager.instance.WinLose();
+                    }
+                else
+                    SceneManager.LoadScene(0);
+            }
+            else if (GameManager.instance.GetLives() <= 0)
+            {
+                GameManager.instance.WinLose();
+            }
         }
     }
 

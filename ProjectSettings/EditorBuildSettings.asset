@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HW Level.unity
     guid: 04466c89cab955447a5a901c78e046b8
   - enabled: 1
+    path: Assets/Scenes/WinLose.unity
+    guid: ede050b855c002f4fae60b8030006ca7
+  - enabled: 0
     path: Assets/Scenes/ClassScene.unity
     guid: 203347a2640a4d94c86f3d36f79a5a16
   m_configObjects: {}

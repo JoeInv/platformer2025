@@ -9,10 +9,10 @@ public class FloatingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      StartCoroutine("MoveObject");
+      StartCoroutine("MovePlatform");
     }
 
-    IEnumerator MoveObject()
+    IEnumerator MovePlatform()
     {
         while (true)
         {

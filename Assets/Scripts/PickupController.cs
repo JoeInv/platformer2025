@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickupController : MonoBehaviour
 {
+    //UNUSED SCRIPT ITS FROM CLASS
     private int distance = 5;
     private int movement = 1;
     // Start is called before the first frame update

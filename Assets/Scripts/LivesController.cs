@@ -10,12 +10,14 @@ public class LivesController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        livesTxt.SetText("Lives: " + GameManager.instance.GetLives());  
+        livesTxt.SetText("Lives: " + GameManager.instance.GetLives());
     }
 
     // Update is called once per frame
     void Update()
     {
-        livesTxt.SetText("Lives: " + GameManager.instance.GetLives());  
+        livesTxt.SetText("Lives: " + GameManager.instance.GetLives());
     }
+
+
 }
